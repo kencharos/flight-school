@@ -12,3 +12,13 @@ jobs:
     trigger: true # gitリポジトリのpush を検知する。
   - task: tests
     file: flight-school/build.yml
+  - task: run
+    file: flight-school/run.yml
+- name: test-run
+  plan:
+  - get: flight-school
+    passed: [test-app] #test-appのあと
+    trigger: true 
+  - task: run2
+    file: flight-school/run.yml
+
